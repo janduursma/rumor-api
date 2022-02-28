@@ -6,7 +6,7 @@ ARG BUILD_REF
 COPY . /service
 
 WORKDIR /service
-RUN go build -ldflags "-X main.build=${BUILD_REF}"
+RUN go build -ldflags "-X main.build=${BUILD_REF}" -o ./service
 
 
 # Run the Go Binary
@@ -15,7 +15,7 @@ FROM alpine:3.15
 ARG BUILD_DATE
 ARG BUILD_REF
 
-COPY --from=build_basic_service /service /service/service
+COPY --from=build_basic_service /service /service
 
 WORKDIR /service
 CMD ["./service"]
