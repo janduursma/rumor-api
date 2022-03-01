@@ -1,0 +1,10 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- ../../base/rumor-pod/
+patchesStrategicMerge:
+- kind-rumor-patch.yaml
+images:
+- name: rumor-api-image
+  newName: rumor-api
+  newTag: "1.0"
